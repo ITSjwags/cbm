@@ -4,7 +4,7 @@ A [Gatsby v2](https://www.gatsbyjs.org/) powered website based on [gatsby-starte
 It follows the [JAMstack architecture](https://jamstack.org) with [Netlify](https://www.netlify.com) for continuous deployment, and CDN distribution.
 
 ## Prototype
-[CBM Website Link](https://cbm.netlify.com/)
+[CBM Website Link](https://cbmurphy.netlify.com/)
 
 ## Features
 * Styled Components for styling
