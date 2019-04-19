@@ -14,6 +14,7 @@ const ulStyles = css`
 const Container = styled.ul`
   ${ulStyles};
   column-count: 2;
+  column-fill: balance;
   column-gap: 4vw;
   padding: 4vw;
 `
