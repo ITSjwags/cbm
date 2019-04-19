@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
-import OnImagesLoaded from 'react-on-images-loaded'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { seoKeywords, paintings } from '../data'
@@ -39,36 +38,27 @@ const ImageTitle = styled.p`
   text-align: center;
 `
 
-const IndexPage = () => {
-  const [imagesLoaded, setImageLoadingStatus] = useState(false)
-
-  return (
-    <Layout>
-      <SEO title="Home" keywords={seoKeywords} />
-      <OnImagesLoaded onLoaded={() => setImageLoadingStatus(true)}>
-        <Container>
-          {paintings.map(
-            ({ id, src, alt }) =>
-              imagesLoaded && (
-                <ListItem key={id}>
-                  <StyledImage src={src} alt={alt} />
-                  <ImageTitle>{alt}</ImageTitle>
-                </ListItem>
-              )
-          )}
-        </Container>
-        <BottomContainer>
-          <ListItem>
-            <StyledImage
-              src={paintingSrc}
-              alt="STRING THEORY - 5000$ - 24'' by 48''"
-            />
-            <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
-          </ListItem>
-        </BottomContainer>
-      </OnImagesLoaded>
-    </Layout>
-  )
-}
+const IndexPage = () => (
+  <Layout>
+    <SEO title="Home" keywords={seoKeywords} />
+    <Container>
+      {paintings.map(({ id, src, alt }) => (
+        <ListItem key={id}>
+          <StyledImage src={src} alt={alt} />
+          <ImageTitle>{alt}</ImageTitle>
+        </ListItem>
+      ))}
+    </Container>
+    <BottomContainer>
+      <ListItem>
+        <StyledImage
+          src={paintingSrc}
+          alt="STRING THEORY - 5000$ - 24'' by 48''"
+        />
+        <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
+      </ListItem>
+    </BottomContainer>
+  </Layout>
+)
 
 export default IndexPage

@@ -8923,13 +8923,6 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-on-images-loaded@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/react-on-images-loaded/-/react-on-images-loaded-2.2.3.tgz#ab5b7b98dd9e0eb7fd67b01d714c505373f900e6"
-  integrity sha512-h+zXiv6RwfY1/0kix+x0bEI1CHXwlnfmwhB5jwpaaerRM6V6Ixf4JAXrM9PnPRu+6ZJZjJTDESCd+sUPJfqL/Q==
-  dependencies:
-    prop-types "^15.6.2"
-
 react-side-effect@^1.1.0:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-1.1.5.tgz#f26059e50ed9c626d91d661b9f3c8bb38cd0ff2d"
