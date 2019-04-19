@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
+import LazyLoad from 'react-lazyload'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { seoKeywords, paintings } from '../data'
@@ -39,35 +40,33 @@ const ImageTitle = styled.p`
 
 const IndexPage = () => {
   const [imagesLoaded, setImageLoadingStatus] = useState(false)
-  useEffect(() => {
-    if (window !== undefined) window.onload = setImageLoadingStatus(true)
-    console.log(imagesLoaded)
-  }, [imagesLoaded])
 
   return (
     <Layout>
       <SEO title="Home" keywords={seoKeywords} />
-      {imagesLoaded && (
-        <>
-          <Container>
-            {paintings.map(({ id, src, alt }) => (
-              <ListItem key={id}>
-                <StyledImage src={src} alt={alt} />
-                <ImageTitle>{alt}</ImageTitle>
-              </ListItem>
-            ))}
-          </Container>
-          <BottomContainer>
-            <ListItem>
+      <LazyLoad height="100vh" offset={100}>
+        <Container>
+          {paintings.map(({ id, src, alt }) => (
+            <ListItem key={id}>
               <StyledImage
-                src={paintingSrc}
-                alt="STRING THEORY - 5000$ - 24'' by 48''"
+                src={src}
+                alt={alt}
+                onLoad={() => setImageLoadingStatus(true)}
               />
-              <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
+              {imagesLoaded && <ImageTitle>{alt}</ImageTitle>}
             </ListItem>
-          </BottomContainer>
-        </>
-      )}
+          ))}
+        </Container>
+        <BottomContainer>
+          <ListItem>
+            <StyledImage
+              src={paintingSrc}
+              alt="STRING THEORY - 5000$ - 24'' by 48''"
+            />
+            <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
+          </ListItem>
+        </BottomContainer>
+      </LazyLoad>
     </Layout>
   )
 }
