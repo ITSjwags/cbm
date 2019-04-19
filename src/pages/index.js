@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import LazyLoad from 'react-lazyload'
+import OnImagesLoaded from 'react-on-images-loaded'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { seoKeywords, paintings } from '../data'
@@ -44,18 +44,17 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" keywords={seoKeywords} />
-      <LazyLoad height="100vh" offset={100}>
+      <OnImagesLoaded onLoaded={() => setImageLoadingStatus(true)}>
         <Container>
-          {paintings.map(({ id, src, alt }) => (
-            <ListItem key={id}>
-              <StyledImage
-                src={src}
-                alt={alt}
-                onLoad={() => setImageLoadingStatus(true)}
-              />
-              {imagesLoaded && <ImageTitle>{alt}</ImageTitle>}
-            </ListItem>
-          ))}
+          {paintings.map(
+            ({ id, src, alt }) =>
+              imagesLoaded && (
+                <ListItem key={id}>
+                  <StyledImage src={src} alt={alt} />
+                  <ImageTitle>{alt}</ImageTitle>
+                </ListItem>
+              )
+          )}
         </Container>
         <BottomContainer>
           <ListItem>
@@ -66,7 +65,7 @@ const IndexPage = () => {
             <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
           </ListItem>
         </BottomContainer>
-      </LazyLoad>
+      </OnImagesLoaded>
     </Layout>
   )
 }
