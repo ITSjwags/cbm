@@ -45,7 +45,7 @@ const ImageTitle = styled.p`
     if (position === '18') return '1.44vw'
     if (position === '19') return '1.74vw'
     if (position === '20') return '1.56vw'
-    if (position === '22') return '1.75vw'
+    if (position === '22') return '1.74vw'
     if (position === '23') return '1.68vw'
     if (position === '28') return '1.88vw'
     return '1.9vw'
