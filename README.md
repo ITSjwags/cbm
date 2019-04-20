@@ -1,10 +1,8 @@
 # CB Murphy Website
 A [Gatsby v2](https://www.gatsbyjs.org/) powered website based on [gatsby-starter-default](https://github.com/gatsbyjs/gatsby-starter-default/).
 
-It follows the [JAMstack architecture](https://jamstack.org) with [Netlify](https://www.netlify.com) for continuous deployment, and CDN distribution.
-
-## Prototype
-[CBM Website Link](https://cbmurphy.netlify.com/)
+## Live Website
+[cbmurphy.net](https://cbmurphy.net)
 
 ## Features
 * Styled Components for styling
@@ -35,4 +33,9 @@ yarn serve
 ```
 
 ## Deployment
-All the files are on GitHub and hosted using Netlify with it's CDN and CI so everything committed to master automatically gets deployed live.
+All the files are on GitHub at: https://github.com/ITSjwags/cbm and hosting is with Bluehost. Here are the steps to making changes and getting them live:
+
+1. Clone this repo
+2. Edit the files as you need locally using the available scripts above
+3. Run the build command which moves all production ready files into the `public/` directory.
+4. Copy/FTP those files into bluehost.
