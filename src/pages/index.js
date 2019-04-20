@@ -54,9 +54,17 @@ const ImageTitle = styled.p`
 
 const IndexPage = ({ data }) => { // eslint-disable-line
   const paintings = data.paintings.edges
-  const lightboxImages = paintings.map(({ node: { src: { publicURL } } }) => ({
-    src: publicURL,
-  }))
+  const lightboxImages = paintings.map(
+    ({
+      node: {
+        alt,
+        src: { publicURL },
+      },
+    }) => ({
+      src: publicURL,
+      caption: alt,
+    })
+  )
   const [options, setOptions] = useState({
     isOpen: false,
     currentImage: 0,
@@ -104,6 +112,7 @@ const IndexPage = ({ data }) => { // eslint-disable-line
 
       <Lightbox
         enableKeyboardInput
+        caption
         images={lightboxImages}
         currentImage={options.currentImage}
         isOpen={options.isOpen}

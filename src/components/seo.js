@@ -16,7 +16,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         lang,
       }}
       title={title}
-      titleTemplate="%s | CBMurphy"
+      titleTemplate="%s | CB Murphy"
       meta={[
         {
           name: 'description',
@@ -40,7 +40,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           name: 'twitter:creator',
-          content: '@cbmurphy',
+          content: '@charleybmurphy',
         },
         {
           name: 'twitter:title',

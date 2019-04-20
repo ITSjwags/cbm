@@ -19,6 +19,12 @@ const Styles = createGlobalStyle`
     font-family: 'Nunito Sans', sans-serif;
     font-size: 28px;
     font-weight: 900;
+
+    #lightboxBackdrop {
+      figcaption {
+        font-size: 2vw;
+      }
+    }
   }
 `
 
