@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import styled from 'styled-components'
 import Lightbox from 'react-images'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { seoKeywords, paintings } from '../data'
+import seoKeywords from '../data/keywords'
 import paintingSrc from '../images/String Theory.jpg'
 
 const Container = styled.ul`
   column-count: 2;
-  column-fill: balance;
   column-gap: 4vw;
   list-style: none;
   margin: 0;
@@ -23,13 +24,8 @@ const BottomContainer = styled.ul`
 
 const ListItem = styled.li`
   break-inside: avoid;
-  display: inline;
-
-  ${({ cursor }) =>
-    cursor &&
-    css`
-      cursor: pointer;
-    `}
+  cursor: ${({ cursor }) => (cursor ? 'pointer' : 'auto')};
+  display: grid;
 `
 
 const StyledImage = styled.img`
@@ -40,24 +36,27 @@ const StyledImage = styled.img`
 const ImageTitle = styled.p`
   text-align: center;
 
-  font-size: ${({ id }) => {
-    if (id === 4) return '1.83vw'
-    if (id === 5) return '1.42vw'
-    if (id === 6) return '1.39vw'
-    if (id === 9) return '1.57vw'
-    if (id === 13) return '1.85vw'
-    if (id === 18) return '1.44vw'
-    if (id === 19) return '1.74vw'
-    if (id === 20) return '1.56vw'
-    if (id === 22) return '1.75vw'
-    if (id === 23) return '1.68vw'
-    if (id === 28) return '1.88vw'
+  font-size: ${({ position }) => {
+    if (position === '4') return '1.83vw'
+    if (position === '5') return '1.42vw'
+    if (position === '6') return '1.39vw'
+    if (position === '9') return '1.57vw'
+    if (position === '13') return '1.85vw'
+    if (position === '18') return '1.44vw'
+    if (position === '19') return '1.74vw'
+    if (position === '20') return '1.56vw'
+    if (position === '22') return '1.75vw'
+    if (position === '23') return '1.68vw'
+    if (position === '28') return '1.88vw'
     return '1.9vw'
   }};
 `
 
-const IndexPage = () => {
-  const lightboxImages = paintings.map(({ src }) => ({ src }))
+const IndexPage = ({ data }) => { // eslint-disable-line
+  const paintings = data.paintings.edges
+  const lightboxImages = paintings.map(({ node: { src: { publicURL } } }) => ({
+    src: publicURL,
+  }))
   const [options, setOptions] = useState({
     isOpen: false,
     currentImage: 0,
@@ -66,6 +65,42 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" keywords={seoKeywords} />
+      <Container>
+        {paintings.map(
+          ({
+            node: {
+              id,
+              alt,
+              src: {
+                childImageSharp: { fluid },
+              },
+            },
+          }) => (
+            <ListItem
+              key={id}
+              cursor="true"
+              onClick={() =>
+                setOptions({
+                  isOpen: true,
+                  currentImage: id - 1,
+                })
+              }
+            >
+              <Img fluid={fluid} alt={alt} />
+              <ImageTitle position={id}>{alt}</ImageTitle>
+            </ListItem>
+          )
+        )}
+      </Container>
+      <BottomContainer>
+        <ListItem>
+          <StyledImage
+            src={paintingSrc}
+            alt="STRING THEORY - 5000$ - 24'' by 48''"
+          />
+          <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
+        </ListItem>
+      </BottomContainer>
 
       <Lightbox
         enableKeyboardInput
@@ -86,36 +121,39 @@ const IndexPage = () => {
         }
         onClose={() => setOptions({ isOpen: false })}
       />
-
-      <Container>
-        {paintings.map(({ id, src, alt }) => (
-          <ListItem
-            key={id}
-            cursor="true"
-            onClick={() =>
-              setOptions({
-                isOpen: true,
-                currentImage: id - 1,
-              })
-            }
-          >
-            <StyledImage src={src} alt={alt} />
-            <ImageTitle id={id}>{alt}</ImageTitle>
-          </ListItem>
-        ))}
-      </Container>
-
-      <BottomContainer>
-        <ListItem>
-          <StyledImage
-            src={paintingSrc}
-            alt="STRING THEORY - 5000$ - 24'' by 48''"
-          />
-          <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
-        </ListItem>
-      </BottomContainer>
     </Layout>
   )
 }
+
+export const query = graphql`
+  query paintingsQuery {
+    paintings: allPaintingsJson {
+      edges {
+        node {
+          id
+          alt
+          src {
+            publicURL
+            childImageSharp {
+              fluid(maxWidth: 1440) {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+                originalImg
+                originalName
+                presentationWidth
+                presentationHeight
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
