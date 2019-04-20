@@ -4,7 +4,7 @@ import portraits from './portraits'
 import Resume from './resume'
 
 const Container = styled.header`
-  padding: 5vw 8vw;
+  padding: 4vw 11vw 3vw 11vw;
   position: relative;
 `
 
@@ -56,13 +56,13 @@ const TextLink = styled.a`
 const Right = styled.button`
   background: transparent;
   cursor: pointer;
-  height: 38.2vw;
+  height: 30vw;
   margin: 0;
   outline: 0;
   overflow: hidden;
   padding: 0;
   transition: all 250ms ease;
-  width: 30vw;
+  width: 24vw;
 
   > img {
     display: block;
@@ -72,7 +72,7 @@ const Right = styled.button`
 
 const Blurb = styled.p`
   font-size: 2.3vw;
-  margin: 9vw 0 0 auto;
+  margin: 2vw 0 0 auto;
   max-width: 53vw;
   text-align: right;
 `
@@ -191,7 +191,7 @@ const Header = () => {
       <Blurb>
         CB Murphy is a novelist, painter, object maker,  and rogue
         anthropologist. His work has been  shown all over the world and he
-        volunteers at a  high security prison teaching art. 
+        volunteers at a  high security prison teaching art. {' '}
         <ModalLink onClick={handleModalLinkClick}>
           exhibitions + awards + publications
         </ModalLink>
