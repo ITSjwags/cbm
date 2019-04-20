@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
+import Lightbox from 'react-images'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { seoKeywords, paintings } from '../data'
@@ -23,6 +24,12 @@ const BottomContainer = styled.ul`
 const ListItem = styled.li`
   break-inside: avoid;
   display: inline;
+
+  ${({ cursor }) =>
+    cursor &&
+    css`
+      cursor: pointer;
+    `}
 `
 
 const StyledImage = styled.img`
@@ -49,27 +56,66 @@ const ImageTitle = styled.p`
   }};
 `
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={seoKeywords} />
-    <Container>
-      {paintings.map(({ id, src, alt }) => (
-        <ListItem key={id}>
-          <StyledImage src={src} alt={alt} />
-          <ImageTitle id={id}>{alt}</ImageTitle>
+const IndexPage = () => {
+  const lightboxImages = paintings.map(({ src }) => ({ src }))
+  const [options, setOptions] = useState({
+    isOpen: false,
+    currentImage: 0,
+  })
+
+  return (
+    <Layout>
+      <SEO title="Home" keywords={seoKeywords} />
+
+      <Lightbox
+        enableKeyboardInput
+        images={lightboxImages}
+        currentImage={options.currentImage}
+        isOpen={options.isOpen}
+        onClickPrev={() =>
+          setOptions({
+            ...options,
+            currentImage: options.currentImage - 1,
+          })
+        }
+        onClickNext={() =>
+          setOptions({
+            ...options,
+            currentImage: options.currentImage + 1,
+          })
+        }
+        onClose={() => setOptions({ isOpen: false })}
+      />
+
+      <Container>
+        {paintings.map(({ id, src, alt }) => (
+          <ListItem
+            key={id}
+            cursor="true"
+            onClick={() =>
+              setOptions({
+                isOpen: true,
+                currentImage: id - 1,
+              })
+            }
+          >
+            <StyledImage src={src} alt={alt} />
+            <ImageTitle id={id}>{alt}</ImageTitle>
+          </ListItem>
+        ))}
+      </Container>
+
+      <BottomContainer>
+        <ListItem>
+          <StyledImage
+            src={paintingSrc}
+            alt="STRING THEORY - 5000$ - 24'' by 48''"
+          />
+          <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
         </ListItem>
-      ))}
-    </Container>
-    <BottomContainer>
-      <ListItem>
-        <StyledImage
-          src={paintingSrc}
-          alt="STRING THEORY - 5000$ - 24'' by 48''"
-        />
-        <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
-      </ListItem>
-    </BottomContainer>
-  </Layout>
-)
+      </BottomContainer>
+    </Layout>
+  )
+}
 
 export default IndexPage
