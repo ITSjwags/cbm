@@ -37,17 +37,18 @@ const ImageTitle = styled.p`
   text-align: center;
 
   font-size: ${({ position }) => {
-    if (position === '4') return '1.83vw'
-    if (position === '5') return '1.42vw'
-    if (position === '6') return '1.39vw'
-    if (position === '9') return '1.57vw'
-    if (position === '13') return '1.85vw'
-    if (position === '18') return '1.44vw'
-    if (position === '19') return '1.74vw'
-    if (position === '20') return '1.56vw'
-    if (position === '22') return '1.74vw'
-    if (position === '23') return '1.68vw'
-    if (position === '28') return '1.88vw'
+    if (position === '4') return '1.75vw'
+    if (position === '5') return '1.35vw'
+    if (position === '6') return '1.3vw'
+    if (position === '9') return '1.5vw'
+    if (position === '13') return '1.75vw'
+    if (position === '18') return '1.35vw'
+    if (position === '19') return '1.65vw'
+    if (position === '20') return '1.5vw'
+    if (position === '22') return '1.65vw'
+    if (position === '23') return '1.6vw'
+    if (position === '24') return '1.8vw'
+    if (position === '28') return '1.8vw'
     return '1.9vw'
   }};
 `

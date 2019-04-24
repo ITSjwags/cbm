@@ -4,7 +4,7 @@ import portraits from './portraits'
 import Resume from './resume'
 
 const Container = styled.header`
-  padding: 4vw 11vw 3vw 11vw;
+  padding: 4vw 10vw 1vw 10vw;
   position: relative;
 `
 
@@ -15,13 +15,13 @@ const Top = styled.div`
 `
 
 const Name = styled.h1`
-  font-size: 6vw;
+  font-size: 7vw;
   margin: 0;
   text-transform: uppercase;
 `
 
 const Subtitle = styled.h2`
-  font-size: 2.45vw;
+  font-size: 2.9vw;
   margin: 0 0 0 3vw;
   text-transform: uppercase;
 `
@@ -44,7 +44,7 @@ const ListItem = styled.li`
 const TextLink = styled.a`
   border-bottom: 1px solid currentColor;
   color: #3636ff;
-  font-size: 2vw;
+  font-size: 2.35vw;
   text-decoration: none;
   transition: all 250ms ease;
 
@@ -55,6 +55,7 @@ const TextLink = styled.a`
 
 const Right = styled.button`
   background: transparent;
+  border: 0;
   cursor: pointer;
   height: 30vw;
   margin: 0;
@@ -71,9 +72,9 @@ const Right = styled.button`
 `
 
 const Blurb = styled.p`
-  font-size: 2.3vw;
-  margin: 2vw 0 0 auto;
-  max-width: 53vw;
+  font-size: 1.6vw;
+  margin: 0.5vw 0 0 auto;
+  max-width: 38vw;
   text-align: right;
 `
 
@@ -83,7 +84,7 @@ const ModalLink = styled.button`
   border-bottom: 1px solid currentColor;
   color: #3636ff;
   cursor: pointer;
-  font-size: 2.5vw;
+  font-size: inherit;
   font-weight: bold;
   margin: 0.5vw 0 0 0;
   outline: 0;
