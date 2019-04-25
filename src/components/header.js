@@ -4,7 +4,7 @@ import portraits from './portraits'
 import Resume from './resume'
 
 const Container = styled.header`
-  padding: 4vw 10vw 1vw 10vw;
+  padding: 4vw 7vw 1.5vw 10vw;
   position: relative;
 `
 
@@ -12,6 +12,7 @@ const Top = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin-right: 3vw;
 `
 
 const Name = styled.h1`
@@ -190,9 +191,9 @@ const Header = () => {
         </Right>
       </Top>
       <Blurb>
-        CB Murphy is a novelist, painter, object maker,  and rogue
-        anthropologist. His work has been  shown all over the world and he
-        volunteers at a  high security prison teaching art. {' '}
+        CB Murphy is a novelist, painter, object maker, and rogue
+        anthropologist. His work has been shown all over the world and he
+        volunteers at a high security prison teaching art.
         <ModalLink onClick={handleModalLinkClick}>
           exhibitions + awards + publications
         </ModalLink>
