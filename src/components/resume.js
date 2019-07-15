@@ -2,6 +2,23 @@ import React from 'react'
 import styled from 'styled-components'
 import resumedata from './resume-data'
 
+const Resume = () =>
+  resumedata.map(({ title, work }, idx) => (
+    <div key={idx}>
+      <p>{title}</p>
+      <List>
+        {work.map(({ date, name, location }, workIndex) => (
+          <ListItem key={workIndex}>
+            <span>{date}</span>
+            <span>
+              <Name>{name}</Name> - {location}
+            </span>
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  ))
+
 const List = styled.ul`
   list-style: none;
   margin: 0;
@@ -19,25 +36,5 @@ const ListItem = styled.li`
 const Name = styled.span`
   font-weight: bold;
 `
-
-const Resume = () => (
-  <>
-    {resumedata.map(({ id, title, work }) => (
-      <div key={id}>
-        <p>{title}</p>
-        <List>
-          {work.map(({ id: workID, date, name, location }) => (
-            <ListItem key={workID}>
-              <span>{date}</span>
-              <span>
-                <Name>{name}</Name> - {location}
-              </span>
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    ))}
-  </>
-)
 
 export default Resume

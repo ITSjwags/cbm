@@ -8,51 +8,6 @@ import SEO from '../components/seo'
 import seoKeywords from '../data/keywords'
 import paintingSrc from '../images/String Theory.jpg'
 
-const Container = styled.ul`
-  column-count: 2;
-  column-gap: 4vw;
-  list-style: none;
-  margin: 0;
-  padding: 0 4vw 2vw 4vw;
-`
-
-const BottomContainer = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0 4vw;
-`
-
-const ListItem = styled.li`
-  break-inside: avoid;
-  cursor: ${({ cursor }) => (cursor ? 'pointer' : 'auto')};
-  display: grid;
-`
-
-const StyledImage = styled.img`
-  display: block;
-  width: 100%;
-`
-
-const ImageTitle = styled.p`
-  text-align: center;
-
-  font-size: ${({ position }) => {
-    if (position === '4') return '1.75vw'
-    if (position === '5') return '1.35vw'
-    if (position === '6') return '1.3vw'
-    if (position === '9') return '1.5vw'
-    if (position === '13') return '1.75vw'
-    if (position === '18') return '1.35vw'
-    if (position === '19') return '1.65vw'
-    if (position === '20') return '1.5vw'
-    if (position === '22') return '1.65vw'
-    if (position === '23') return '1.6vw'
-    if (position === '24') return '1.8vw'
-    if (position === '28') return '1.8vw'
-    return '1.9vw'
-  }};
-`
-
 const IndexPage = ({ data }) => { // eslint-disable-line
   const paintings = data.paintings.edges
   const lightboxImages = paintings.map(
@@ -134,6 +89,51 @@ const IndexPage = ({ data }) => { // eslint-disable-line
     </Layout>
   )
 }
+
+const Container = styled.ul`
+  column-count: 2;
+  column-gap: 4vw;
+  list-style: none;
+  margin: 0;
+  padding: 0 4vw 2vw 4vw;
+`
+
+const BottomContainer = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0 4vw;
+`
+
+const ListItem = styled.li`
+  break-inside: avoid;
+  cursor: ${({ cursor }) => (cursor ? 'pointer' : 'auto')};
+  display: grid;
+`
+
+const StyledImage = styled.img`
+  display: block;
+  width: 100%;
+`
+
+const ImageTitle = styled.p`
+  text-align: center;
+
+  font-size: ${({ position }) => {
+    if (position === '4') return '1.75vw'
+    if (position === '5') return '1.35vw'
+    if (position === '6') return '1.3vw'
+    if (position === '9') return '1.5vw'
+    if (position === '13') return '1.75vw'
+    if (position === '18') return '1.35vw'
+    if (position === '19') return '1.65vw'
+    if (position === '20') return '1.5vw'
+    if (position === '22') return '1.65vw'
+    if (position === '23') return '1.6vw'
+    if (position === '24') return '1.8vw'
+    if (position === '28') return '1.8vw'
+    return '1.9vw'
+  }};
+`
 
 export const query = graphql`
   query paintingsQuery {
