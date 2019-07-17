@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 import Lightbox from 'react-images'
+
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import seoKeywords from '../data/keywords'
+import Footer from '../components/footer'
+
 import paintingSrc from '../images/String Theory.jpg'
 
-const IndexPage = ({ data }) => { // eslint-disable-line
+import seoKeywords from '../data/keywords'
+
+const IndexPage = ({ data }) => {
   const paintings = data.paintings.edges
   const lightboxImages = paintings.map(
     ({
@@ -65,6 +70,8 @@ const IndexPage = ({ data }) => { // eslint-disable-line
           <ImageTitle>STRING THEORY - 5000$ - 24'' by 48''</ImageTitle>
         </ListItem>
       </BottomContainer>
+
+      <Footer />
 
       <Lightbox
         enableKeyboardInput
@@ -165,5 +172,9 @@ export const query = graphql`
     }
   }
 `
+
+IndexPage.propTypes = {
+  data: PropTypes.objectOf(PropTypes.any),
+}
 
 export default IndexPage
