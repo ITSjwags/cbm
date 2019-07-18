@@ -9,13 +9,26 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Footer from '../components/footer'
 
+import instagramSrc from '../images/instagram.svg'
 import paintingSrc from '../images/String Theory.jpg'
+import twitterSrc from '../images/twitter.svg'
 
 import seoKeywords from '../data/keywords'
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, path }) => {
+  const alchemy = data.alchemy.edges
   const paintings = data.paintings.edges
-  const lightboxImages = paintings.map(
+  const studio = data.studio.edges
+  const [lightbox, setLightbox] = useState('')
+  const alchemyImages = alchemy.map(({ node: { src: { publicURL } } }) => ({
+    src: publicURL,
+    caption: 'Everyday Alchemy (2019 Show)',
+  }))
+  const studioImages = studio.map(({ node: { src: { publicURL } } }) => ({
+    src: publicURL,
+    caption: 'Studio Tour',
+  }))
+  const paintingImages = paintings.map(
     ({
       node: {
         alt,
@@ -26,14 +39,61 @@ const IndexPage = ({ data }) => {
       caption: alt,
     })
   )
+  const lightboxImages = () => {
+    if (lightbox === 'alchemy') return alchemyImages
+    if (lightbox === 'studio') return studioImages
+    return paintingImages
+  }
   const [options, setOptions] = useState({
     isOpen: false,
     currentImage: 0,
   })
 
   return (
-    <Layout>
+    <Layout path={path}>
       <SEO title="Home" keywords={seoKeywords} />
+      <HeaderList>
+        <HeaderListItem>
+          <TextLink
+            onClick={() => {
+              setLightbox('alchemy')
+              setOptions({
+                isOpen: true,
+                currentImage: 0,
+              })
+            }}
+          >
+            Everyday Alchemy (2019 Show)
+          </TextLink>
+          <ImageLink
+            href="https://twitter.com/charleybmurphy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={twitterSrc} alt="twitter" />
+          </ImageLink>
+        </HeaderListItem>
+        <HeaderListItem>
+          <TextLink
+            onClick={() => {
+              setLightbox('studio')
+              setOptions({
+                isOpen: true,
+                currentImage: 0,
+              })
+            }}
+          >
+            Studio Tour
+          </TextLink>
+          <ImageLink
+            href="https://www.instagram.com/cb_murphy/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={instagramSrc} alt="instagram" />
+          </ImageLink>
+        </HeaderListItem>
+      </HeaderList>
       <Container>
         {paintings.map(
           ({
@@ -48,12 +108,13 @@ const IndexPage = ({ data }) => {
             <ListItem
               key={id}
               cursor="true"
-              onClick={() =>
+              onClick={() => {
+                setLightbox('paintings')
                 setOptions({
                   isOpen: true,
                   currentImage: id - 1,
                 })
-              }
+              }}
             >
               <Img fluid={fluid} alt={alt} />
               <ImageTitle position={id}>{alt}</ImageTitle>
@@ -76,7 +137,7 @@ const IndexPage = ({ data }) => {
       <Lightbox
         enableKeyboardInput
         caption
-        images={lightboxImages}
+        images={lightboxImages()}
         currentImage={options.currentImage}
         isOpen={options.isOpen}
         onClickPrev={() =>
@@ -103,6 +164,47 @@ const Container = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0 4vw 2vw 4vw;
+`
+
+const HeaderList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0 4vw 4vw 4vw;
+`
+
+const HeaderListItem = styled.li`
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 7vw;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+`
+
+const TextLink = styled.a`
+  border-bottom: 1px solid currentColor;
+  color: #3636ff;
+  cursor: pointer;
+  font-size: 4.2vw;
+  justify-self: start;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 250ms ease;
+
+  &:hover {
+    border-color: transparent;
+  }
+`
+
+const ImageLink = styled.a`
+  height: 7vw;
+  width: 7vw;
+
+  > img {
+    display: block;
+    width: 100%;
+  }
 `
 
 const BottomContainer = styled.ul`
@@ -170,11 +272,62 @@ export const query = graphql`
         }
       }
     }
+    alchemy: allAlchemyJson {
+      edges {
+        node {
+          id
+          src {
+            publicURL
+            childImageSharp {
+              fluid(maxWidth: 1440) {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+                originalImg
+                originalName
+                presentationWidth
+                presentationHeight
+              }
+            }
+          }
+        }
+      }
+    }
+    studio: allStudioJson {
+      edges {
+        node {
+          id
+          src {
+            publicURL
+            childImageSharp {
+              fluid(maxWidth: 1440) {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+                originalImg
+                originalName
+                presentationWidth
+                presentationHeight
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `
 
 IndexPage.propTypes = {
   data: PropTypes.objectOf(PropTypes.any),
+  path: PropTypes.string.isRequired,
 }
 
 export default IndexPage
