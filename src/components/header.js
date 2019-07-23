@@ -74,7 +74,7 @@ const Header = ({ path }) => {
 }
 
 const Container = styled.header`
-  padding: 4vw;
+  padding: 4vw 4vw 0 4vw;
 `
 
 const Top = styled.div`
