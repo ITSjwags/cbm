@@ -2,7 +2,7 @@
   "name": "cbmurphy",
   "private": true,
   "description": "A portfolio website for CB Murphy",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "author": "Jonathan Wagoner <jvwagoner@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
