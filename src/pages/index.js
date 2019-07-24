@@ -169,7 +169,7 @@ const Container = styled.ul`
 const HeaderList = styled.ul`
   list-style: none;
   margin: 0;
-  padding: 4vw;
+  padding: 4vw 5vw 4vw 4vw;
 `
 
 const HeaderListItem = styled.li`
@@ -245,7 +245,7 @@ const ImageTitle = styled.p`
 `
 
 export const query = graphql`
-  query paintingsQuery {
+  query dataQuery {
     paintings: allPaintingsJson {
       edges {
         node {
@@ -272,7 +272,7 @@ export const query = graphql`
         }
       }
     }
-    alchemy: allAlchemyJson {
+    studio: allStudioJson {
       edges {
         node {
           id
@@ -297,7 +297,7 @@ export const query = graphql`
         }
       }
     }
-    studio: allStudioJson {
+    alchemy: allAlchemyJson {
       edges {
         node {
           id

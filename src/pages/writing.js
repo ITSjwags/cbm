@@ -140,7 +140,7 @@ const Home = styled.div`
   align-content: center;
   display: grid;
   flex: 1;
-  padding: 0 4vw;
+  padding: 1vw 4vw 0 4vw;
   place-items: flex-end;
 `
 
@@ -167,6 +167,10 @@ const Container = styled.div`
 
   > span {
     flex: 1;
+  }
+
+  &:last-of-type {
+    padding-bottom: 4vw;
   }
 `
 
@@ -195,7 +199,7 @@ const BuyLink = styled.a`
 `
 
 const ChapterLink = styled.a`
-  font-size: 5.4vw;
+  font-size: 5.3vw;
   ${linkStyles};
 `
 

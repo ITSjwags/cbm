@@ -162,7 +162,7 @@ const Right = styled.button`
 
 const Blurb = styled.p`
   font-size: 2.3vw;
-  margin: 0.5vw 0 0 auto;
+  margin: 2vw 0 0 auto;
   max-width: 53vw;
   text-align: right;
 `
@@ -190,9 +190,6 @@ const Modal = styled.div`
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   font-size: 2.5vw;
-  overflow: hidden;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
   padding: 1.2vw 3vw 3vw 3vw;
   position: absolute;
   top: 2vw;
@@ -206,7 +203,7 @@ const Close = styled.button`
   border: 0;
   color: currentColor;
   cursor: pointer;
-  font-size: 3.5vw;
+  font-size: 6vw;
   margin: 0;
   outline: 0;
   padding: 0;
