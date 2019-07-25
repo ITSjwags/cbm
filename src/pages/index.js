@@ -169,7 +169,7 @@ const Container = styled.ul`
 const HeaderList = styled.ul`
   list-style: none;
   margin: 0;
-  padding: 4vw 5vw 4vw 4vw;
+  padding: 4vw 6vw 4vw 4vw;
 `
 
 const HeaderListItem = styled.li`
