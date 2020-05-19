@@ -33,9 +33,4 @@ yarn serve
 ```
 
 ## Deployment
-All the files are on GitHub at: https://github.com/ITSjwags/cbm and hosting is with Bluehost. Here are the steps to making changes and getting them live:
-
-1. Clone this repo
-2. Edit the files as you need locally using the available scripts above
-3. Run the build command which moves all production ready files into the `public/` directory.
-4. Copy/FTP those files into bluehost.
+We're using the CI and deployment features of Netlify. Everything committed to master will automatically be deployed live.
