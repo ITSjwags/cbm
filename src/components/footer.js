@@ -9,7 +9,7 @@ const Container = styled.footer`
 const TextLink = styled.a`
   border-bottom: 1px solid currentColor;
   color: #3636ff;
-  font-size: 2.5vw;
+  font-size: 2.4vw;
   text-decoration: none;
   transition: all 250ms ease;
 
@@ -21,7 +21,7 @@ const TextLink = styled.a`
 const Footer = () => (
   <Container>
     <TextLink href="mailto:cbm@cbmurphy.net">
-      FOR THE SELECTION OF OTHER WORKS - CBM@CBMURPHY.NET
+      FOR PRICING AND SELECTION OF OTHER WORKS - CBM@CBMURPHY.NET
     </TextLink>
   </Container>
 )
