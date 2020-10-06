@@ -34,7 +34,9 @@ const Writing = ({ path }) => (
         </ChapterLink>
       </Left>
       <Right>
-        <Title>BARDO ZSA ZSA (2019)</Title>
+        <Title>
+          BARDO ZSA ZSA <Small>(coming soon)</Small>
+        </Title>
         <Copy>
           After experiencing a series of harrowing Gilligan's Island themed
           alien abductions, Russell Johnson flees his midwestern life for the
@@ -189,6 +191,10 @@ const Title = styled.h3`
   font-weight: bold;
   margin: 3vw 0;
   text-transform: uppercase;
+`
+
+const Small = styled.span`
+  text-transform: lowercase;
 `
 
 const BuyLink = styled.a`
